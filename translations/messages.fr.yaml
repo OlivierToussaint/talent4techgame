@@ -1,0 +1,6 @@
+menu:
+  login: Se connecter
+  register: S'enregistrer
+  game: Le jeu
+  index: Index
+  logout: Se déconnecter

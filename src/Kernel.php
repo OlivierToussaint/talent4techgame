@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * This file is part of the Talent4tech project.
+ * Olivier Toussaint <olivier@toussaint.fr>
+ */
+
 namespace App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
