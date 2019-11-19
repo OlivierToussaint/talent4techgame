@@ -5,7 +5,7 @@
  * Olivier Toussaint <olivier@toussaint.fr>
  */
 
-namespace App\Service;
+namespace App\UserService;
 
 use App\Entity\User;
 
@@ -27,7 +27,6 @@ class UserAction
         }
         if ($myCharacter->getAp() < User::ATTAQUE_COST) {
             $this->userNotification->setMessage("Vous n'avez plus assez de point d'action");
-
             return false;
         }
 
@@ -41,8 +40,7 @@ class UserAction
             $myCharacter->setAp($myCharacter->getAp() - User::ATTAQUE_COST);
             // Attaque
             $damage = random_int(1, 100);
-            $hp = $enemy->getHp() - $damage;
-            $enemy->setHp($hp);
+            $enemy->setHp($enemy->getHp() - $damage);
 
             $this->userNotification->setMessage($myCharacter->getName().' attaque '.$enemy->getName().' pour '.$damage.' de dommage');
 
@@ -73,8 +71,7 @@ class UserAction
 
             // Heal
             $heal = rand(1, 50);
-            $hp = $friend->getHp() + $heal;
-            $friend->setHp($hp);
+            $friend->setHp($friend->getHp() + $heal);
 
             $this->userNotification->setMessage($myCharacter->getName().' soigne '.$friend->getName().' pour '.$heal.' de soins');
         }

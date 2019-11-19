@@ -21,7 +21,7 @@ class User implements UserInterface
 
     public const DEAD = 'dead';
 
-    public const ATTAQUE_COST = 5;
+    public const ATTAQUE_COST = 10;
 
     public const HEAL_COST = 2;
 
@@ -69,9 +69,11 @@ class User implements UserInterface
      */
     private $connectAt;
 
+
+
     public function getState()
     {
-        if ($this->hp < 0) {
+        if ($this->hp <= 0) {
             return self::DEAD;
         }
 

@@ -24,14 +24,19 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function findAllWithoutMe(User $user)
+    public function findAllWithoutMe(User $user, $name = null)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u <> :user')
-            ->setParameter('user', $user)
-            ->orderBy('u.name', 'ASC')
-            ->getQuery()
-            ->getResult();
+         $query = $this->createQueryBuilder('u')
+            ->andWhere('u <> :me')
+            ->setParameter('me', $user)
+            ->orderBy('u.name', 'ASC');
+
+        if ($name !== null) {
+            $query->andWhere('u.name LIKE :name')
+            ->setParameter('name', '%'.$name.'%');
+        }
+
+        return  $query->getQuery()->getResult();
     }
 
     // /**

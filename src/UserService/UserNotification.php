@@ -5,7 +5,7 @@
  * Olivier Toussaint <olivier@toussaint.fr>
  */
 
-namespace App\Service;
+namespace App\UserService;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 

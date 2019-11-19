@@ -25,6 +25,8 @@
                         <i class="fas fa-sign-in-alt"></i> {{ 'menu.register'|trans }}
                     </a>
                 {% else %}
+                    Point d'action : {{ app.user.ap }}
+                    Point de vie : {{ app.user.hp }}
                     <a class="btn btn-info ml-3" href="{{ path('app_logout') }}">
                         <i class="fas fa-sign-in-alt"></i> {{ 'menu.logout'|trans }}
                     </a>
