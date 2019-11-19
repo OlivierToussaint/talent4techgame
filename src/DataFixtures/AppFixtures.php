@@ -25,6 +25,14 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
+        $user = new User();
+        $user->setEmail('test@test.fr');
+        $user->setName('Le personnage test');
+        $user->setPassword($this->encoder->encodePassword($user, 'test'));
+        $user->setConnectAt(new \DateTime('now'));
+        $user->setRoles(['ROLE_USER']);
+        $manager->persist($user);
+        $manager->flush();
 
         for ($counter = 0; $counter < 10; ++$counter) {
             $user = new User();
