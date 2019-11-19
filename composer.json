@@ -29,12 +29,13 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "fzaninotto/faker": "^1.9",
+        "phpstan/phpstan": "^0.10.1",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
-        "friendsofphp/php-cs-fixer": "^2.15",
-        "phpstan/phpstan": "^0.10.1",
         "symfony/web-server-bundle": "4.3.*"
     },
     "config": {
