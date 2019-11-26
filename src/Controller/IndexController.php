@@ -19,7 +19,6 @@ class IndexController extends AbstractController
 {
     /**
      * @Route("/", name="index")
-     * @IsGranted("ROLE_USER")
      */
     public function index(): Response
     {
