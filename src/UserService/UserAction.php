@@ -27,6 +27,7 @@ class UserAction
         }
         if ($myCharacter->getAp() < User::ATTAQUE_COST) {
             $this->userNotification->setMessage("Vous n'avez plus assez de point d'action");
+
             return false;
         }
 

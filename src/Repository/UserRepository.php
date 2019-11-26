@@ -26,12 +26,12 @@ class UserRepository extends ServiceEntityRepository
 
     public function findAllWithoutMe(User $user, $name = null)
     {
-         $query = $this->createQueryBuilder('u')
+        $query = $this->createQueryBuilder('u')
             ->andWhere('u <> :me')
             ->setParameter('me', $user)
             ->orderBy('u.name', 'ASC');
 
-        if ($name !== null) {
+        if (null !== $name) {
             $query->andWhere('u.name LIKE :name')
             ->setParameter('name', '%'.$name.'%');
         }

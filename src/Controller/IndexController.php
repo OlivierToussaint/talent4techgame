@@ -10,7 +10,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\UserService\UserAction;
-use App\UserService\UserManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +19,7 @@ class IndexController extends AbstractController
 {
     /**
      * @Route("/", name="index")
+     * @IsGranted("ROLE_USER")
      */
     public function index(): Response
     {
@@ -80,19 +81,5 @@ class IndexController extends AbstractController
         }
 
         return $this->redirectToRoute('game');
-    }
-
-    /**
-     * @Route("/game/cheat", name="cheat")
-     */
-    public function cheat(UserManager $userManager): Response
-    {
-        $user = $this->getUser();
-        if($user instanceof User) {
-            $userManager->initUser($user);
-        }
-
-        return $this->redirectToRoute('game');
-
     }
 }

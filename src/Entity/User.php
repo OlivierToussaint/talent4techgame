@@ -10,6 +10,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -26,6 +27,16 @@ class User implements UserInterface
     public const HEAL_COST = 2;
 
     public const AP_REGEN = 60;
+
+    public const ROLE_USER = 'ROLE_USER';
+
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
+
+    public function __construct()
+    {
+        $this->roles = [self::ROLE_USER];
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -56,6 +67,12 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 100,
+     *      minMessage = "You must be at least {{ limit }}cm tall to enter",
+     *      maxMessage = "You cannot be taller than {{ limit }}cm to enter"
+     * )
      */
     private $hp = 100;
 
@@ -68,8 +85,6 @@ class User implements UserInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $connectAt;
-
-
 
     public function getState()
     {
