@@ -13,9 +13,10 @@
         <div class="row p-1">
             <div class="col">{{ user.name }}</div>
             <div class="col">{{ user.hp }} </div>
-            <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{{ path('attack', {'id' : user.id}) }}">Attaque</a></div>
-            <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{{ path('heal', {'id' : user.id}) }}">Soigner</a></div>
+            <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{{ path('attack', {'id' : user.id}) }}">{{ 'attack'|trans }}</a></div>
+            <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{{ path('heal', {'id' : user.id}) }}">{{ 'heal'|trans }}</a></div>
         </div>
 
     {% endfor %}
+
 {% endblock %}
