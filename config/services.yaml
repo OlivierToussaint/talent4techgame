@@ -6,7 +6,7 @@
 parameters:
   locale: 'fr'
   app_locales: [nl_NL, en_EN]
-
+  avatar_directory: '%kernel.project_dir%/public/uploads/avatars'
 services:
     # default configuration for services in *this* file
     _defaults:

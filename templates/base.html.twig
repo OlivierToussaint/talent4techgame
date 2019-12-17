@@ -11,15 +11,6 @@
     {{ include('_menu.html.twig') }}
 
     <div class="container">
-        {{ 'test'|trans }}
-
-
-            <li>
-                <a href="{{ path('index', {'_locale' : 'en'}) }}">test
-                </a>
-            </li>
-
-
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         {{ encore_entry_script_tags('app') }}

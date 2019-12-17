@@ -86,6 +86,11 @@ class User implements UserInterface
      */
     private $connectAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
     public function getState()
     {
         if ($this->hp <= 0) {
@@ -217,6 +222,18 @@ class User implements UserInterface
     public function setConnectAt(?\DateTimeInterface $connectAt): self
     {
         $this->connectAt = $connectAt;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

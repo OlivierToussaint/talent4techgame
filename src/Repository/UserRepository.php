@@ -39,6 +39,17 @@ class UserRepository extends ServiceEntityRepository
         return  $query->getQuery()->getResult();
     }
 
+    public function findNoConnexion()
+    {
+        $query = $this->createQueryBuilder('u')
+            ->orderBy('u.name', 'ASC');
+
+        $query->andWhere('u.connectAt is null');
+
+
+        return  $query->getQuery()->getResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

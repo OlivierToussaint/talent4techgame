@@ -2,6 +2,35 @@
 
 {% block title %}Game{% endblock %}
 
+        {% block javascripts %}
+            <script>
+                let buttonAttack = document.getElementsByClassName('js-attack');
+                if (buttonAttack) {
+                    for (let i = 0; i < buttonAttack.length; i++) {
+                        buttonAttack[i].addEventListener("click", function (elm) {
+                            elm.preventDefault();
+                            let result = '';
+                            fetch('/game/attack/js', {
+                                method: 'post',
+                                headers: new Headers({
+                                    'Content-Type': 'application/json'
+                                }),
+                                body: JSON.stringify({'attack': buttonAttack[i].dataset.id})
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    let shippingDiv = document.getElementById('user-' + buttonAttack[i].dataset.id);
+                                    shippingDiv.innerHTML = data.hp;
+
+                                })
+                        });
+                    }
+                }
+            </script>
+
+        {% endblock %}
+
+
 {% block body %}
     {% for flash_message in app.session.flashbag.get('notification') %}
         <div class="alert alert-success">
@@ -12,7 +41,9 @@
     {% for user in users %}
         <div class="row p-1">
             <div class="col">{{ user.name }}</div>
-            <div class="col">{{ user.hp }} </div>
+            <div id="user-{{ user.id }}" class="col">{{ user.hp }} </div>
+            <div class="col"><span class="js-attack btn btn-outline-secondary btn-sm" data-id="{{ user.id }}">{{ 'attack'|trans }} JS</span></div>
+
             <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{{ path('attack', {'id' : user.id}) }}">{{ 'attack'|trans }}</a></div>
             <div class="col"><a class="btn btn-outline-secondary btn-sm" href="{{ path('heal', {'id' : user.id}) }}">{{ 'heal'|trans }}</a></div>
         </div>
